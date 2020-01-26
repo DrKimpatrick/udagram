@@ -37,14 +37,14 @@ import { filterImageFromURL, deleteLocalFiles } from "./util/util";
       });
     }
 
-    try {
-      const filteredImage = await filterImageFromURL(url);
-      return res.sendFile(filteredImage, () =>
-        deleteLocalFiles([filteredImage])
+    filterImageFromURL(url).then((data) => {
+      return res.sendFile(data, () =>
+        deleteLocalFiles([data])
       );
-    } catch (error) {
+    }).catch(() => {
       return res.status(422).send({error: "Unable to process image at the provided url"});
-    }
+    });
+      
   });
   //! END @TODO1
 
