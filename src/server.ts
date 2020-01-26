@@ -44,7 +44,7 @@ import { filterImageFromURL, deleteLocalFiles } from "./util/util";
       );
     } catch (error) {
       return res.status(422).send({error: "Unable to process image at the provided url"});
-    }
+    }      
   });
   //! END @TODO1
 
